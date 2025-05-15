@@ -1,0 +1,34 @@
+{
+  "name": "inventory-manager",
+  "version": "1.0.0",
+  "description": "Inventory Management Desktop Application",
+  "main": "public/electron.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "pack": "electron-builder --dir",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "build": {
+    "appId": "com.yourcompany.inventory-manager",
+    "productName": "Inventory Manager",
+    "files": [
+      "**/*",
+      "!node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "build-resources",
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "devDependencies": {
+    "electron": "^24.8.8",
+    "electron-builder": "^24.9.1"
+  }
+}

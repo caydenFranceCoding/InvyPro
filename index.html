@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <Link rel="stylesheet" href="css/premium.css">
+
+<!-- Premium Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>Invy pro</h1>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button id="inventory-tab" class="nav-tab active">
+                <i class="fas fa-boxes"></i> Inventory List
+            </button>
+            <button id="reports-tab" class="nav-tab">
+                <span class="icon-chart"></span>
+                Reports
+            </button>
+            <button id="export-btn" class="nav-tab export-btn">
+                <span class="icon-download"></span>
+                Export
+            </button>
+        </nav>
+
+        <!-- Inventory View -->
+        <section id="inventory-view" class="view active-view">
+            <!-- Search and Filter Controls -->
+            <div class="controls">
+                <div class="search-container">
+                    <span class="icon-search"></span>
+                    <input type="text" id="search-input" placeholder="Search inventory...">
+                </div>
+
+                <div class="filters">
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+
+                    <select id="location-filter">
+                        <option value="">All Locations</option>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+
+            <!-- Add Item Button -->
+            <div class="add-item-container">
+                <button id="add-item-btn" class="btn btn-primary">
+                    <span class="icon-plus"></span>
+                    Add New Item
+                </button>
+            </div>
+
+            <!-- Add Item Form (Hidden by default) -->
+            <div id="add-item-form" class="item-form hidden">
+                <div class="form-header">
+                    <h2>Add New Item</h2>
+                    <button id="close-form-btn" class="btn-icon">
+                        <span class="icon-close"></span>
+                    </button>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="item-name">Name*</label>
+                        <input type="text" id="item-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-category">Category*</label>
+                        <select id="item-category" required>
+                            <option value="">Select Category</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-quantity">Quantity</label>
+                        <input type="number" id="item-quantity" min="0" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-price">Price</label>
+                        <input type="number" id="item-price" min="0" step="0.01" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-location">Location*</label>
+                        <select id="item-location" required>
+                            <option value="">Select Location</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button id="submit-item-btn" class="btn btn-primary">Add Item</button>
+                </div>
+            </div>
+
+            <!-- Inventory Table -->
+            <div class="table-container">
+                <table id="inventory-table" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Location</th>
+                            <th>Last Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Reports View (Hidden by default) -->
+        <section id="reports-view" class="view hidden">
+            <div class="reports-grid">
+                <!-- Summary Cards -->
+                <div class="report-card">
+                    <h3>Inventory Summary</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <p class="summary-label">Total Items</p>
+                            <p id="total-items" class="summary-value">0</p>
+                        </div>
+                        <div class="summary-item">
+                            <p class="summary-label">Total Value</p>
+                            <p id="total-value" class="summary-value">$0.00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Breakdown -->
+                <div class="report-card">
+                    <h3>Items by Category</h3>
+                    <div id="category-breakdown" class="breakdown-list">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Low Stock Alert -->
+                <div class="report-card full-width">
+                    <div class="report-header">
+                        <h3>Low Stock Alert</h3>
+                        <div class="threshold-control">
+                            <span>Threshold:</span>
+                            <input type="number" id="threshold-input" min="0" value="30">
+                        </div>
+                    </div>
+
+                    <div id="low-stock-container">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/utils.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/electron-integration.js"></script>
+    <script src="js/premium-features.js"></script>
+
+
+</body>
+</html>
